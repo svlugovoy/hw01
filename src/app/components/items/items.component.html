@@ -1,0 +1,32 @@
+<div class="row">
+
+  <div class="card col-3 no-padding" *ngFor="let p of products; let idx = index">
+
+    <img class="card-img-top" src="http://via.placeholder.com/250x150" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{p.name}}</h5>
+      <h6 class="card-title">Price: {{p.price}}</h6>
+      <p class="card-text">{{p.info}}</p>
+
+      <a href="#" class="btn btn-primary" (click)="manipulateReviews($event)">Reviews</a>
+      <a href="#" class="btn btn-danger" (click)="removeProduct(idx)">Remove</a>
+
+      <div class="reviews hidden">
+        <hr>
+        <a href="#" class="btn btn-secondary btn-sm" (click)="hideReviews($event)">Hide Reviews</a>
+        <hr>
+        <ul *ngFor="let r of p.review">
+          <li><span class="font-weight-bold">{{r.name}}:</span> {{r.text}}</li>
+        </ul>
+        <div class="alert alert-info" *ngIf="!p.review.length">No reviews yet.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="!products.length">
+    <h3>Products List is Empty!</h3>
+  </div>
+
+
+</div>
